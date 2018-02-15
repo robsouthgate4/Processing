@@ -36,7 +36,7 @@ class Sphere {
   PShader displace;
 
   Sphere(){
-
+    angle = 0.0f;
     location = new PVector(width / 2, height / 2);
     fill(0, 51, 102);
     specular(104, 102, 100);
@@ -46,11 +46,14 @@ class Sphere {
     // Shader setup
     displace = loadShader("DisplaceFrag.glsl", "DisplaceVert.glsl");
     displace.set("fraction", 1.0f);
-    displace.set("angle", angle);
+
 
   }
 
   public void display() {
+
+    angle += 0.1f;
+    displace.set("angle", angle);
 
     shader(displace);
     noStroke();
@@ -60,7 +63,7 @@ class Sphere {
     rotateY(angle);
     sphere(250);
 
-    angle += 0.01f;
+
 
   }
 
